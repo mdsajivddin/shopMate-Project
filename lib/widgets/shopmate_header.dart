@@ -35,7 +35,9 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController(text: AppState.instance.searchQuery);
+    _searchController = TextEditingController(
+      text: AppState.instance.searchQuery,
+    );
   }
 
   @override
@@ -57,7 +59,9 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
         if (_searchController.text != AppState.instance.searchQuery) {
           _searchController.value = _searchController.value.copyWith(
             text: AppState.instance.searchQuery,
-            selection: TextSelection.collapsed(offset: AppState.instance.searchQuery.length),
+            selection: TextSelection.collapsed(
+              offset: AppState.instance.searchQuery.length,
+            ),
           );
         }
 
@@ -322,7 +326,9 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
                           borderRadius: BorderRadius.circular(999.r),
                           border: Border.all(
                             color: isVendor
-                                ? const Color(0xFF10B981).withValues(alpha: 0.45)
+                                ? const Color(
+                                    0xFF10B981,
+                                  ).withValues(alpha: 0.45)
                                 : Colors.white.withValues(alpha: 0.12),
                             width: 1,
                           ),
@@ -352,13 +358,17 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
                             ],
                             Icon(
                               LucideIcons.store,
-                              color: isVendor ? const Color(0xFF34D399) : const Color(0xFF10B981),
+                              color: isVendor
+                                  ? const Color(0xFF34D399)
+                                  : const Color(0xFF10B981),
                               size: 14.sp,
                             ),
                             SizedBox(width: 6.w),
                             Text(
                               isVendor
-                                  ? (currentPersona != null ? 'Seller: ${currentPersona.name.split(' ').first}' : 'Vendor Admin')
+                                  ? (currentPersona != null
+                                        ? 'Seller: ${currentPersona.name.split(' ').first}'
+                                        : 'Vendor Admin')
                                   : 'Become a Seller',
                               style: GoogleFonts.outfit(
                                 fontSize: 11.5.sp,
@@ -380,7 +390,7 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
               // 2. SEARCH BAR ("Search products, kicks...") - 1:1 Live WebApp Input
               Container(
                 height: 42.h,
-                padding: EdgeInsets.only(left: 12.w, right: 6.w),
+                // padding: EdgeInsets.only(left: 12.w, right: 6.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(999.r),
@@ -395,12 +405,6 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      LucideIcons.search,
-                      size: 16.sp,
-                      color: const Color(0xFF94A3B8),
-                    ),
-                    SizedBox(width: 8.w),
                     Expanded(
                       child: TextField(
                         controller: _searchController,
@@ -411,6 +415,11 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
                           color: const Color(0xFF0F172A),
                         ),
                         decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            LucideIcons.search,
+                            size: 16.sp,
+                            color: const Color(0xFF94A3B8),
+                          ),
                           hintText: 'Search products, kicks...',
                           hintStyle: GoogleFonts.plusJakartaSans(
                             fontSize: 12.sp,
@@ -418,7 +427,12 @@ class _ShopMateHeaderState extends State<ShopMateHeader> {
                           ),
                           border: InputBorder.none,
                           isDense: true,
-                          contentPadding: EdgeInsets.zero,
+                          contentPadding: EdgeInsets.only(
+                            // left: 12.w,
+                            // right: 6.w,
+                            top: 10.h,
+                            bottom: 10.h,
+                          ),
                         ),
                         onChanged: (val) {
                           AppState.instance.setSearchQuery(val);
